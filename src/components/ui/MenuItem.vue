@@ -13,8 +13,8 @@ defineProps({
 </script>
 
 <template>
-  <li class="border-b border-gray-700 px-4 py-5 text-white">
-    <RouterLink :to="{ name: 'home' }" class="flex items-center gap-2">
+  <li class="border-b border-gray-700 text-white p-1">
+    <RouterLink :to="{ name }" class="flex items-center gap-2 px-4 py-5">
       <slot></slot>
       <span>{{ title }}</span>
     </RouterLink>
