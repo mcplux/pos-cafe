@@ -5,7 +5,7 @@ import { Bars3Icon } from '@heroicons/vue/24/outline'
 
 <template>
   <header class="fixed top-0 w-full">
-    <div class="flex justify-between items-center bg-[#f4f4f4] p-3 border-b border-[#ddd] w-auto">
+    <div class="flex justify-between items-center bg-gray-100 p-3.5 border-b border-gray-200 w-auto">
       <div class="flex items-center">
         <button id="sidebarToggle" class="px-3">
           <Bars3Icon class="size-6" />
