@@ -1,8 +1,13 @@
 <script setup>
-
+import Header from '@/components/ui/Header.vue'
+import Sidebar from './components/ui/Sidebar.vue'
 </script>
 
 <template>
-  <h1>Hello world</h1>
+  <Header />
+
+  <div>
+    <Sidebar />
+  </div>
 </template>
 
