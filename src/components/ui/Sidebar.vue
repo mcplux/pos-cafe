@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useSidebarStore } from '@/stores/sidebar'
-import MenuItem from './MenuItem.vue'
+import MenuItem from './SidebarItem.vue'
 import { HomeIcon, ShoppingCartIcon, ArchiveBoxIcon, NewspaperIcon, ChartBarIcon, UserIcon, Cog8ToothIcon } from '@heroicons/vue/24/outline'
 
 const sidebar = useSidebarStore()
