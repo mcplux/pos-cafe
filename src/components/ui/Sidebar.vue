@@ -1,10 +1,15 @@
 <script setup>
+import { computed } from 'vue'
+import { useSidebarStore } from '@/stores/sidebar'
 import MenuItem from './MenuItem.vue'
 import { HomeIcon, ShoppingCartIcon, ArchiveBoxIcon, NewspaperIcon, ChartBarIcon, UserIcon, Cog8ToothIcon } from '@heroicons/vue/24/outline'
+
+const sidebar = useSidebarStore()
+const isOpen = computed(() => sidebar.isOpen)
 </script>
 
 <template>
-  <nav class="fixed w-60 top-14 -translate-x-full md:translate-x-0 overflow-auto bg-gray-800 h-full transition-transform duration-500">
+  <nav class="fixed w-60 top-14 bg-gray-800 overflow-auto h-full transition-transform duration-500" :class="[isOpen ? 'translate-x-0' : '-translate-x-full']">
     <ul>
       <MenuItem name="home" title="Home">
         <HomeIcon class="w-6 h-6" />
