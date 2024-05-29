@@ -1,9 +1,12 @@
 <script setup>
 import { useModalStore } from '@/stores/modal'
+import { useMenuStore } from '@/stores/menu'
 import MenuModal from '@/components/MenuModal.vue'
+import MenuItem from '@/components/MenuItem.vue';
 import { PlusIcon } from '@heroicons/vue/24/outline'
 
 const modal = useModalStore()
+const menu = useMenuStore()
 </script>
 
 <template>
@@ -18,7 +21,13 @@ const modal = useModalStore()
 
     <!-- Menu list -->
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-5 gap-5">
-    
+      <MenuItem
+        v-for="item in menu.menu"
+        :key="item.id"
+        :id="item.id"
+        :name="item.name"
+        :stock="item.stock"
+      />
     </div>
   </div>
 </template>
