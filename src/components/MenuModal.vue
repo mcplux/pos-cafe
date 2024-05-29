@@ -7,6 +7,7 @@ import {
   DialogPanel,
   DialogTitle,
 } from '@headlessui/vue'
+import MenuForm from '@/components/MenuForm.vue'
 
 const modal = useModalStore()
 </script>
@@ -44,31 +45,7 @@ const modal = useModalStore()
             <DialogPanel class="w-full max-w-2xl rounded bg-white">
               <DialogTitle class="text-2xl font-bold text-center mt-5">New Product</DialogTitle>
 
-              <div class="p-5">
-                <FormKit type="form" :actions="false">
-
-                  <FormKit 
-                    type="text"
-                    label="Name"
-                    name="name"
-                    placeholder="Product name"
-                    validation="required"
-                  />
-
-                  <FormKit 
-                    type="textarea"
-                    label="Description"
-                    name="description"
-                    placeholder="Product description"
-                    validation="required|length:0,75"
-                  />
-
-                  <FormKit type="submit">
-                    Save
-                  </FormKit>
-
-                </FormKit>
-              </div>
+              <MenuForm />
             </DialogPanel>
           </div>
         </div>
