@@ -26,7 +26,7 @@ const menu = useMenuStore()
         :key="item.id"
         :id="item.id"
         :name="item.name"
-        :stock="item.stock"
+        :description="item.description"
       />
     </div>
   </div>

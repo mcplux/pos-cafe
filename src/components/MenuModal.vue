@@ -56,11 +56,11 @@ const modal = useModalStore()
                   />
 
                   <FormKit 
-                    type="number"
-                    label="Stock"
-                    name="stock"
-                    placeholder="Product stock"
-                    validation="required"
+                    type="textarea"
+                    label="Description"
+                    name="description"
+                    placeholder="Product description"
+                    validation="required|length:0,75"
                   />
 
                   <FormKit type="submit">

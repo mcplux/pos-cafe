@@ -8,8 +8,8 @@ defineProps({
   name: {
     type: String,
   },
-  stock: {
-    type: Number,
+  description: {
+    type: String,
   }
 })
 </script>
@@ -20,21 +20,14 @@ defineProps({
     <div class="flex gap-10 justify-between">
       <div>
         <div class="mb-4">
-          <p class="font-bold">Stock: <span class="font-normal">{{ stock }}</span></p>
+          <p>
+            {{ description }}
+          </p>
         </div>
         <div class="flex gap-2">
           <button class="px-2 py-1 rounded bg-gray-200 text-sm">Edit</button>
           <button class="px-2 py-1 rounded bg-red-500 text-white text-sm">Delete</button>
         </div>
-      </div>
-
-      <div class="flex flex-col gap-2 items-center justify-center">
-        <button class="p-2 rounded-full bg-indigo-500 text-white">
-          <PlusIcon class="w-4 h-4" />
-        </button>
-        <button class="p-2 rounded-full bg-indigo-500 text-white">
-          <MinusIcon class="w-4 h-4" />
-        </button>
       </div>
     </div>
   </div>
