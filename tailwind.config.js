@@ -2,7 +2,8 @@
 export default {
   content: [
     './index.html',
-    './src/**/*.{js,vue}'
+    './formkit.config.js',
+    './src/**/*.{js,vue}',
   ],
   theme: {
     extend: {},
