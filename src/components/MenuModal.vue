@@ -15,7 +15,7 @@ const modal = useModalStore()
 <template>
   <!-- Wrap your dialog in a `TransitionRoot`. -->
   <TransitionRoot :show="modal.isOpen" as="template">
-    <Dialog @close="modal.setIsOpen">
+    <Dialog @close="modal.closeModal">
       <!-- Wrap your backdrop in a `TransitionChild`. -->
       <TransitionChild
         enter="duration-300 ease-out"

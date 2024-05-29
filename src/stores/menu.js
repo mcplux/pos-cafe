@@ -1,9 +1,15 @@
 import { defineStore } from "pinia"
-import { onMounted, ref } from "vue"
+import { onMounted, reactive, ref } from "vue"
 import MenuAPI from "@/api/MenuAPI"
 
 export const useMenuStore = defineStore('menu', () => {
   const menu = ref([])
+  const product = reactive({
+    id: '',
+    name: '',
+    price: '',
+    description: '',
+  })
 
   async function storeItem(data) {
     await MenuAPI.store(data)
@@ -22,6 +28,7 @@ export const useMenuStore = defineStore('menu', () => {
 
   return {
     menu,
+    product,
     storeItem,
   }
 })

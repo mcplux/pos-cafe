@@ -1,5 +1,6 @@
-import { defineStore } from "pinia"
 import { ref } from "vue"
+import { reset } from "@formkit/vue"
+import { defineStore } from "pinia"
 
 export const useModalStore = defineStore('modal', () => {
   
@@ -9,8 +10,14 @@ export const useModalStore = defineStore('modal', () => {
     isOpen.value = value
   }
 
+  function closeModal() {
+    setIsOpen(false)
+    reset('menu-form')
+  }
+
   return {
     isOpen,
     setIsOpen,
+    closeModal,
   }
 })

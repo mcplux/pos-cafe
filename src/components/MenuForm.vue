@@ -1,5 +1,4 @@
 <script setup>
-import { reset } from '@formkit/vue'
 import { useMenuStore } from '@/stores/menu'
 import { useModalStore } from '@/stores/modal'
 import { useToastStore } from '@/stores/toast'
@@ -11,8 +10,7 @@ const toast = useToastStore()
 const handleSubmit = async (data) => {
   try {
     await menu.storeItem(data)
-    reset('menu-form') // Reset form
-    modal.setIsOpen(false) // Close modal
+    modal.closeModal() // Close modal
     toast.openNotification('Added correctly') // Show notification
 
   } catch (err) {
@@ -28,6 +26,7 @@ const handleSubmit = async (data) => {
       :actions="false"
       @submit="handleSubmit"
       id="menu-form"
+      :value="menu.product"
     >
 
       <FormKit 
@@ -36,6 +35,7 @@ const handleSubmit = async (data) => {
         name="name"
         placeholder="Product name"
         validation="required"
+        v-model.trim="menu.product.name"
       />
 
       <FormKit 
@@ -44,6 +44,7 @@ const handleSubmit = async (data) => {
         name="price"
         placeholder="Product name"
         validation="required|min:1"
+        v-model.number="menu.product.price"
       />
 
       <FormKit 
@@ -52,6 +53,7 @@ const handleSubmit = async (data) => {
         name="description"
         placeholder="Product description"
         validation="required|length:0,75"
+        v-model.trim="menu.product.description"
       />
 
       <FormKit type="submit">
