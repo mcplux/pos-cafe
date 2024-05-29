@@ -1,5 +1,5 @@
 <script setup>
-import { MinusIcon, PlusIcon } from '@heroicons/vue/24/outline';
+import { fortmatCurrency } from '@/helpers'
 
 defineProps({
   id: {
@@ -10,7 +10,10 @@ defineProps({
   },
   description: {
     type: String,
-  }
+  },
+  price: {
+    type: Number,
+  },
 })
 </script>
 
@@ -23,6 +26,7 @@ defineProps({
           <p>
             {{ description }}
           </p>
+          <p class="font-bold mt-2">Price: <span class="font-normal">{{ fortmatCurrency(price) }}</span></p>
         </div>
         <div class="flex gap-2">
           <button class="px-2 py-1 rounded bg-gray-200 text-sm">Edit</button>
