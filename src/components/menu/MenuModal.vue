@@ -8,7 +8,7 @@ import {
   DialogPanel,
   DialogTitle,
 } from '@headlessui/vue'
-import MenuForm from '@/components/MenuForm.vue'
+import MenuForm from '@/components/menu/MenuForm.vue'
 
 const modal = useModalStore()
 const menu = useMenuStore()
