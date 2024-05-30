@@ -11,7 +11,7 @@ const menu = useMenuStore()
 
 <template>
   <div>
-    <button @click="modal.setIsOpen(true)" class="fixed bg-indigo-400 text-white rounded-full p-3 transition-colors hover:bg-indigo-500 z-10 right-2 lg:right-10 bottom-10">
+    <button @click="modal.openModal(true)" class="fixed bg-indigo-400 text-white rounded-full p-3 transition-colors hover:bg-indigo-500 z-10 right-2 lg:right-10 bottom-10">
       <PlusIcon class="w-6 h-6" />     
     </button>
 

@@ -14,10 +14,19 @@ export const useMenuStore = defineStore('menu', () => {
     description: '',
   })
 
+  function resetProduct() {
+    Object.assign(product, {
+      id: '',
+      name: '',
+      price: '',
+      description: '',
+    })
+  }
+
   async function handleEdit(id) {
     const { data } = await MenuAPI.getById(id)
+    modal.openModal(true)
     Object.assign(product, data)
-    modal.setIsOpen(true)
   }
 
   async function saveItem() {
@@ -57,6 +66,7 @@ export const useMenuStore = defineStore('menu', () => {
   return {
     menu,
     product,
+    resetProduct,
     handleEdit,
     saveItem,
     storeItem,
