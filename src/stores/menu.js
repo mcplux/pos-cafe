@@ -28,9 +28,13 @@ export const useMenuStore = defineStore('menu', () => {
 
   // Query database for item to edit and open modal 
   async function handleEdit(id) {
-    const { data } = await MenuAPI.getById(id)
-    modal.openModal(true)
-    Object.assign(product, data)
+    try {
+      const { data } = await MenuAPI.getById(id)
+      modal.openModal(true)
+      Object.assign(product, data)
+    } catch (err) {
+      console.error("Failed to fetch product data for editing:", err)
+    }
   }
 
   // Show an alert before delete
@@ -45,55 +49,77 @@ export const useMenuStore = defineStore('menu', () => {
       confirmButtonText: "Yes, delete it"
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await deleteItem(id)
-        toast.openNotification('Deleted correctly')
+        try {
+          await deleteItem(id)
+          toast.openNotification('Deleted correctly')
+        } catch (err) {
+          console.error("Failed to delete product:", err)
+        }
       }
     });
   }
 
-  // If there an id then edit, else store item.
+  // If there is an id then edit, else store item.
   async function saveItem() {
-    if(!product.id) {
-      storeItem()
-      return
+    try {
+      if (!product.id) {
+        await storeItem()
+      } else {
+        await updateItem()
+      }
+    } catch (err) {
+      console.error("Failed to save product:", err)
     }
-
-    updateItem()
   }
 
   /** CRUD */
 
+  async function getAllItems() {
+    try {
+      const { data } = await MenuAPI.all()
+      menu.value = data
+    } catch (err) {
+      console.error("Failed to fetch all items:", err)
+    }
+  }
+
   async function storeItem() {
-    const { name, price, description } = product
-    const { data } = await MenuAPI.store({ name, price, description })
-    menu.value.push(data)
+    try {
+      const { name, price, description } = product
+      const { data } = await MenuAPI.store({ name, price, description })
+      menu.value.push(data)
+    } catch (err) {
+      console.error("Failed to store new product:", err)
+    }
   }
 
   async function updateItem() {
-    const { id } = product
-    const { data } = await MenuAPI.update(id, product)
-    menu.value = menu.value.map(item => item.id === id ? data : item)
+    try {
+      const { id } = product
+      const { data } = await MenuAPI.update(id, product)
+      menu.value = menu.value.map(item => item.id === id ? data : item)
+    } catch (err) {
+      console.error("Failed to update product:", err)
+    }
   }
 
   async function deleteItem(id) {
-    await MenuAPI.delete(id)
-    menu.value = menu.value.filter(item => item.id !== id)
+    try {
+      await MenuAPI.delete(id)
+      menu.value = menu.value.filter(item => item.id !== id)
+    } catch (err) {
+      console.error("Failed to delete product:", err)
+    }
   }
 
   /** End CRUD */
 
-  // When component is mounted query all item menu
+  // When component is mounted, query all item menu
   onMounted(async () => {
-    try {
-      const { data } = await MenuAPI.all()
-
-      menu.value = data
-    } catch (err) {
-      console.log(err)
-    }
+    await getAllItems()
   })
 
-  const isEditing = computed(() => product.id)
+  const isEditing = computed(() => !!product.id)
 
   return {
     menu,
