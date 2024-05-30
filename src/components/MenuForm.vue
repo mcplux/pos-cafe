@@ -41,6 +41,8 @@ const handleSubmit = async (data) => {
       <FormKit 
         type="number"
         label="Price"
+        inputmode="decimal"
+        step="0.01"
         name="price"
         placeholder="Product name"
         validation="required|min:1"
