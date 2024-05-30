@@ -33,7 +33,7 @@ const menu = useMenuStore()
         </div>
         <div class="flex gap-2">
           <button class="px-2 py-1 rounded bg-gray-200 text-sm" @click="menu.handleEdit(id)">Edit</button>
-          <button class="px-2 py-1 rounded bg-red-500 text-white text-sm">Delete</button>
+          <button class="px-2 py-1 rounded bg-red-500 text-white text-sm" @click="menu.deleteItem(id)">Delete</button>
         </div>
       </div>
     </div>

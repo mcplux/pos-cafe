@@ -12,5 +12,8 @@ export default {
   },
   update(id, data) {
     return api.patch(`/menu/${id}`, data)
+  },
+  delete(id) {
+    return api.delete(`/menu/${id}`)
   }
 }

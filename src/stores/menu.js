@@ -51,6 +51,11 @@ export const useMenuStore = defineStore('menu', () => {
 
   }
 
+  async function deleteItem(id) {
+    await MenuAPI.delete(id)
+    menu.value = menu.value.filter(item => item.id !== id)
+  }
+
   onMounted(async () => {
     try {
       const { data } = await MenuAPI.all()
@@ -69,7 +74,7 @@ export const useMenuStore = defineStore('menu', () => {
     resetProduct,
     handleEdit,
     saveItem,
-    storeItem,
+    deleteItem,
     isEditing,
   }
 })
