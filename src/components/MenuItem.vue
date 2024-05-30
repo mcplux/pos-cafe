@@ -1,5 +1,6 @@
 <script setup>
 import { fortmatCurrency } from '@/helpers'
+import { useMenuStore } from '@/stores/menu';
 
 defineProps({
   id: {
@@ -15,6 +16,8 @@ defineProps({
     type: Number,
   },
 })
+
+const menu = useMenuStore()
 </script>
 
 <template>
@@ -29,7 +32,7 @@ defineProps({
           <p class="font-bold mt-2">Price: <span class="font-normal">{{ fortmatCurrency(price) }}</span></p>
         </div>
         <div class="flex gap-2">
-          <button class="px-2 py-1 rounded bg-gray-200 text-sm">Edit</button>
+          <button class="px-2 py-1 rounded bg-gray-200 text-sm" @click="menu.handleEdit(id)">Edit</button>
           <button class="px-2 py-1 rounded bg-red-500 text-white text-sm">Delete</button>
         </div>
       </div>

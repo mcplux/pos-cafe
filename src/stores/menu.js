@@ -1,8 +1,11 @@
 import { defineStore } from "pinia"
-import { onMounted, reactive, ref } from "vue"
+import { computed, onMounted, reactive, ref } from "vue"
+import { useModalStore } from "./modal"
 import MenuAPI from "@/api/MenuAPI"
 
 export const useMenuStore = defineStore('menu', () => {
+  const modal = useModalStore()
+
   const menu = ref([])
   const product = reactive({
     id: '',
@@ -11,9 +14,32 @@ export const useMenuStore = defineStore('menu', () => {
     description: '',
   })
 
-  async function storeItem(data) {
-    await MenuAPI.store(data)
+  async function handleEdit(id) {
+    const { data } = await MenuAPI.getById(id)
+    Object.assign(product, data)
+    modal.setIsOpen(true)
+  }
+
+  async function saveItem() {
+    if(!product.id) {
+      storeItem()
+      return
+    }
+
+    updateItem()
+  }
+
+  async function storeItem() {
+    const { name, price, description } = product
+    const { data } = await MenuAPI.store({ name, price, description })
     menu.value.push(data)
+  }
+
+  async function updateItem() {
+    const { id } = product
+    const { data } = await MenuAPI.update(id, product)
+    menu.value = menu.value.map(item => item.id === id ? data : item)
+
   }
 
   onMounted(async () => {
@@ -26,9 +52,14 @@ export const useMenuStore = defineStore('menu', () => {
     }
   })
 
+  const isEditing = computed(() => product.id)
+
   return {
     menu,
     product,
+    handleEdit,
+    saveItem,
     storeItem,
+    isEditing,
   }
 })

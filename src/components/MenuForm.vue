@@ -9,7 +9,7 @@ const toast = useToastStore()
 
 const handleSubmit = async (data) => {
   try {
-    await menu.storeItem(data)
+    await menu.saveItem(data)
     modal.closeModal() // Close modal
     toast.openNotification('Added correctly') // Show notification
 
