@@ -56,6 +56,10 @@ const handleSubmit = async (data) => {
         v-model.trim="menu.product.description"
       />
 
+      <FormKit type="button" @click="modal.closeModal">
+        Cancel
+      </FormKit>
+
       <FormKit type="submit">
         Save
       </FormKit>
